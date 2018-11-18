@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
     get "/sources" => "sources#index"
     post "/sources" => "usersources#create"
-    get "/sources :id" => "sources#show"
-    delete "/sources :id" => "usersources#destroy"
+    get "/sources/:id" => "sources#show"
+    delete "/sources/:id" => "usersources#destroy"
 
     get "/feed" => "usersources#index"
 

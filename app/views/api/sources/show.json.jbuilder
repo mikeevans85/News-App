@@ -1,0 +1,1 @@
+json.partial! "source.json.jbuilder", source: @source
