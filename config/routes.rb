@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
     post "/users" => "users#create"
 
+    post "/sessions" => "sessions#create"
+
     get "/sources" => "sources#index"
     post "/sources" => "usersources#create"
     get "/sources :id" => "sources#show"
