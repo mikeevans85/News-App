@@ -2,4 +2,4 @@
 #   json.partial! "usersource.json.jbuilder", feed: feed
 # end
 
-json.feed @feed
+json.url @feed.blech
