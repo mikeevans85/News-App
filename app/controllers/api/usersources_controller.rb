@@ -2,7 +2,7 @@ class Api::UsersourcesController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @feed = current_user.usersources
+    @feed = UserSource.where(user_id: current_user.id)
     render "index.json.jbuilder"
   end
 
@@ -20,7 +20,7 @@ class Api::UsersourcesController < ApplicationController
   end
 
   def destroy
-    @usersource = Usersource.find_by(id: params[:id])
+    @usersource = UserSource.find_by(id: params[:id])
     @usersource.destroy
     render json: {message: "Source removed."}
   end

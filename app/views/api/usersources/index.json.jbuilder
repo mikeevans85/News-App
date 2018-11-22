@@ -1,2 +1,5 @@
-json.user @list.user_id
-json.source @list.source_id
+# json.array! @feed.each do |feed|
+#   json.partial! "usersource.json.jbuilder", feed: feed
+# end
+
+json.feed @feed
