@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "/sources" => "sources#index"
     post "/sources" => "usersources#create"
     get "/sources/:id" => "sources#show"
+    patch "sources/:id" => "sources#update"
     delete "/sources/:id" => "usersources#destroy"
 
     get "/feed" => "usersources#index"
