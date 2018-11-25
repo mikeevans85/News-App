@@ -1,5 +1,15 @@
-# json.array! @feed.each do |feed|
-#   json.partial! "usersource.json.jbuilder", feed: feed
-# end
+array = []
+@feed.each do |feed|
+  array << feed.source_id
+end
 
-json.url @feed.blech
+api_array = []
+index = 0
+
+array.length.times do 
+  @source = Source.find_by(id: array[index])
+  api_array << @source.api_url
+  index +=1
+end
+
+json.array api_array
