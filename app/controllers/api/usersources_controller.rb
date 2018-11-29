@@ -12,9 +12,9 @@ class Api::UsersourcesController < ApplicationController
     @data.each do |x|
       @response << HTTP.get(x)
     end
-    @stuff = []
+    @articles = []
     @response.each do |response|
-      @stuff << response.parse
+      @articles.concat response.parse["articles"]
     end
     render "index.json.jbuilder" 
   end

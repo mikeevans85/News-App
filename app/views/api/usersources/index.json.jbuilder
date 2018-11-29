@@ -1,10 +1,6 @@
-# stuff = []
-# json.stuff @response.each do |data|
-#   json.data data.parse
+# json.array! @stuff.each do |stuff|
+#   json.partial! "usersource.json.jbuilder", stuff: stuff
 # end
 
-# json.stuff @response.each do |response|
-#   json.partial! "usersource.json.jbuilder", response: response
-# end
-
-json.stuff @stuff
+json.array! @articles
+# json.stuff @stuff

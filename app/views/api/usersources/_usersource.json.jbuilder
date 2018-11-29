@@ -1,1 +1,2 @@
-json.source_name [:data][:articles][0]
+# json.source_name stuff[0][:articles][:source][:name]
+json.source_name stuff
