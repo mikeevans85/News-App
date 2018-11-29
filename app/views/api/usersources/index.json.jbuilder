@@ -1,3 +1,10 @@
-json.api_list @feed.each do |feed|
-  json.api_url feed.source.api_url
-end
+# stuff = []
+# json.stuff @response.each do |data|
+#   json.data data.parse
+# end
+
+# json.stuff @response.each do |response|
+#   json.partial! "usersource.json.jbuilder", response: response
+# end
+
+json.stuff @stuff

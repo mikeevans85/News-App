@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+gem 'feedjira'
+gem 'figaro'
+gem 'http'
 
 
 # Use ActiveStorage variant

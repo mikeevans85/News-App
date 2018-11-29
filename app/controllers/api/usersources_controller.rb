@@ -1,9 +1,22 @@
 class Api::UsersourcesController < ApplicationController
   before_action :authenticate_user
+  require "http"
 
   def index
-    @feed = UserSource.where(user_id: current_user.id)
-    render "index.json.jbuilder"
+    @usersources = UserSource.where(user_id: current_user.id)
+    @data = []
+    @usersources.each do |usersource|
+      @data << usersource.source.api_url
+    end
+    @response = []
+    @data.each do |x|
+      @response << HTTP.get(x)
+    end
+    @stuff = []
+    @response.each do |response|
+      @stuff << response.parse
+    end
+    render "index.json.jbuilder" 
   end
 
   def create
@@ -13,7 +26,7 @@ class Api::UsersourcesController < ApplicationController
     translated: params["translated"]
     )
     if @list.save
-      render "index.json.jbuilder"
+      render json: {message: "Added to feed!"}
     else
       render json: {errors: @list.errors.full_messages}, status: 422
     end
