@@ -26,6 +26,7 @@ gem 'jwt'
 gem 'feedjira'
 gem 'figaro'
 gem 'http'
+gem 'rack-cors', require: 'rack/cors'
 
 
 # Use ActiveStorage variant
