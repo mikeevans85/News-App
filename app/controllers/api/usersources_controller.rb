@@ -6,7 +6,8 @@ class Api::UsersourcesController < ApplicationController
     @usersources = UserSource.where(user_id: current_user.id)
     @data = []
     @usersources.each do |usersource|
-      @data << usersource.source.api_url
+      # @data << usersource.source.api_url
+      @data << "https://newsapi.org/v2/top-headlines?sources=#{usersource.source.api_url}&apiKey=#{ENV['API_KEY']}"
     end
     @response = []
     @data.each do |x|
