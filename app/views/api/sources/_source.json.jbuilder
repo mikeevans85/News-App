@@ -1,4 +1,5 @@
 json.name source.name
+json.id source.id
 json.api_url source.api_url
 json.source_language source.source_language
 json.place_of_pub source.place_of_pub
