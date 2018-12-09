@@ -1,0 +1,8 @@
+http://themes.orcaslabs.com/posted/ -o /Actualize/themes.orcaslabs.com/posted/ +*orcaslabs.com/posted/* -v
+File generated automatically on Sun, 09 Dec 2018 14:24:23, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+
