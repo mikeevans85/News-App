@@ -1,6 +1,6 @@
 class Api::UsersourcesController < ApplicationController
   before_action :authenticate_user
-require "http"
+  require "http"
 
   def index
     @usersources = UserSource.where(user_id: current_user.id)
@@ -33,7 +33,7 @@ require "http"
   end
 
   def destroy
-    @usersource = UserSource.find_by(id: params[:id])
+    @usersource = UserSource.find_by(source_id: params[:id], user_id: current_user.id)
     @usersource.destroy
     render json: {message: "Source removed."}
   end
