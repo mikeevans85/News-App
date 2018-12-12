@@ -14,7 +14,13 @@ class Api::UsersourcesController < ApplicationController
     end
     @articles = []
     @response.each do |response|
-      @articles.concat response.parse["articles"]
+      articles = response.parse["articles"]
+      articles = articles.map do |article|
+        source = Source.find_by(api_url: article["source"]["id"])
+        article["source_logo"] = source ? source.image_url : "no image"
+        article
+      end
+      @articles.concat articles
     end
     render "index.json.jbuilder" 
   end
