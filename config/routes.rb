@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     delete "/sources/:id" => "usersources#destroy"
 
     get "/feed" => "usersources#index"
-    post "/translate" => "usersources#translate"
+    post "/translater" => "usersources#translate"
 
   end
 end

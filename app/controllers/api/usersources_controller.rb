@@ -42,18 +42,12 @@ class Api::UsersourcesController < ApplicationController
   end
 
   def translate
-    # Your Google Cloud Platform project ID
     project_id = ENV["CLOUD_PROJECT_ID"]
+    translate = Google::Cloud::Translate.new project: project_id 
 
-# Instantiates a client
-    translate = Google::Cloud::Translate.new project: project_id
+    text = params[:title]
+    target = "en"
 
-# The text to translate
-    text = "I would like to pet your cat!"
-# The target language
-    target = "ru"
-
-# Translates some text into Russian
     translation = translate.translate text, to: target
 
     puts "Text: #{text}"
