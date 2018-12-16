@@ -1,6 +1,9 @@
 class Api::UsersourcesController < ApplicationController
   before_action :authenticate_user
   require "http"
+  require "google/cloud/translate"
+  project_id = "apt-aleph-225715"
+  translate = Google::Cloud::Translate.new project: project_id
 
   def index
     @usersources = UserSource.where(user_id: current_user.id)
@@ -36,6 +39,27 @@ class Api::UsersourcesController < ApplicationController
     else
       render json: {errors: @list.errors.full_messages}, status: 422
     end
+  end
+
+  def translate
+    # Your Google Cloud Platform project ID
+    project_id = ENV["CLOUD_PROJECT_ID"]
+
+# Instantiates a client
+    translate = Google::Cloud::Translate.new project: project_id
+
+# The text to translate
+    text = "I would like to pet your cat!"
+# The target language
+    target = "ru"
+
+# Translates some text into Russian
+    translation = translate.translate text, to: target
+
+    puts "Text: #{text}"
+    puts "Translation: #{translation}"
+    render json: {text: text, translation: translation}
+
   end
 
   def destroy
