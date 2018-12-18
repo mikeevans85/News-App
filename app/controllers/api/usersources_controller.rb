@@ -6,6 +6,9 @@ class Api::UsersourcesController < ApplicationController
   translate = Google::Cloud::Translate.new project: project_id
 
   def index
+    api_url = params[:api_url]
+    puts '**********'
+    puts api_url
     @usersources = UserSource.where(user_id: current_user.id)
     @data = []
     @usersources.each do |usersource|
