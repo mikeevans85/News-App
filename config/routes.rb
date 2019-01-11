@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     get "/feed" => "usersources#index"
     post "/translater" => "usersources#translate"
+    patch "/update/" => "usersources#update"
 
   end
 end

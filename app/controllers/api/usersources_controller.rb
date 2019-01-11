@@ -34,8 +34,8 @@ class Api::UsersourcesController < ApplicationController
   def create
     @list = UserSource.new(
     user_id: current_user.id,
-    source_id: params[:source_id]
-    # translated: params["translated"]
+    source_id: params[:source_id],
+    translated: params["translated"]
     )
     if @list.save
       render "index.json.jbuilder"
@@ -57,6 +57,11 @@ class Api::UsersourcesController < ApplicationController
     puts "Translation: #{translation}"
     render json: {text: text, translation: translation}
 
+  end
+
+  def update
+    input_id = params[:id]
+    puts input_id
   end
 
   def destroy
