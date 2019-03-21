@@ -10,13 +10,4 @@ class Api::SourcesController < ApplicationController
     render "show.json.jbuilder"
   end
 
-  # def update
-  #   @source = Source.find_by(id: params["id"])
-  #   @source.translated = params["translated"] || @source.translated
-  #   if @source.save
-  #     render "show.json.jbuilder"
-  #   else
-  #     render json: {errors: @source.errors.full_messages}, status: 422
-  #   end
-  # end
 end

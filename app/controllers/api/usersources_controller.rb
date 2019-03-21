@@ -1,25 +1,25 @@
 class Api::UsersourcesController < ApplicationController
   before_action :authenticate_user
   require "http"
+
+  #Google Translate API requirements
   require "google/cloud/translate"
   project_id = "apt-aleph-225715"
   translate = Google::Cloud::Translate.new project: project_id
 
-  def index
-    api_url = params[:api_url]
-    puts '**********'
-    puts api_url
+  def index #This method creates the news feed
+    api_url = params[:api_url] 
     @usersources = UserSource.where(user_id: current_user.id)
     @data = []
-    @usersources.each do |usersource|
+    @usersources.each do |usersource| #This creats an array of API calls to make
       @data << "https://newsapi.org/v2/top-headlines?sources=#{usersource.source.api_url}&apiKey=#{ENV['API_KEY']}"
     end
     @response = []
-    @data.each do |x|
+    @data.each do |x| #This puts the API call data into a new array
       @response << HTTP.get(x)
     end
     @articles = []
-    @response.each do |response|
+    @response.each do |response| #This parses the data
       articles = response.parse["articles"]
       articles = articles.map do |article|
         source = Source.find_by(api_url: article["source"]["id"])
@@ -49,19 +49,22 @@ class Api::UsersourcesController < ApplicationController
     translate = Google::Cloud::Translate.new project: project_id 
 
     text = params[:title]
+    # text = "Главные новости политики, экономики и бизнеса, комментарии аналитиков"
     target = "en"
 
-    translation = translate.translate text, to: target
+    @translation = translate.translate text, to: target
 
-    puts "Text: #{text}"
-    puts "Translation: #{translation}"
-    render json: {text: text, translation: translation}
+    # puts "Text: #{text}"
+    # puts "Translation: #{translation}"
+    # render json: {text: text, translation: translation}
+    render "translate.json.jbuilder"
 
   end
 
   def update
-    input_id = params[:id]
-    puts input_id
+    @usersource = Usersource.find_by(id: params[:id])
+    @usersource.translated
+
   end
 
   def destroy

@@ -3,4 +3,5 @@
 # end
 
 json.array! @articles
+# json.translation @translation
 # json.stuff @stuff
